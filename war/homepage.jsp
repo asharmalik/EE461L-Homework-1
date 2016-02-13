@@ -18,6 +18,8 @@
 
 <%@ page import="com.googlecode.objectify.*" %>
 
+<%@ page import="com.ee461l.blog.Subscriber" %>
+
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
@@ -35,6 +37,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
  
  	<script src="homepage.js"></script>
+ 	<title>Best Blog</title>
  </head>
   
   <div class="img-container">
@@ -47,12 +50,30 @@
 	// See if we're viewing all blog posts or not
 	String viewAllParam = request.getParameter("viewAll");
 	boolean viewAll = true;
+	boolean userSubscribed = false;
+	
 	if (viewAllParam == null) {
 		viewAll = false;
 	}
 	
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
+	ObjectifyService.register(Subscriber.class);
+	
+	//check if user is subscribed
+	UserService userService = UserServiceFactory.getUserService();
+	User user = userService.getCurrentUser();
+		
+	List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
+	
+	
+	for (Subscriber s : subscribers) {
+		if(s == null) continue;
+		
+		if (s.getUser().getEmail().equals(user.getEmail())) {
+			userSubscribed = true;
+			break;
+		}
+	}
+    
     if (user != null) {
       pageContext.setAttribute("user", user);
 %>
@@ -163,8 +184,15 @@
   </div>
 </div>
 
-<div id="wrapper" style="text-align: center">    
-	<a href="javascript:onSubscribeClick();" id="subscribe-link">Subscribe</a> | <a href="" id="unsubscribe-link">Unsubscribe</a>
+<div id="wrapper" style="text-align: center">
+<%
+if(!userSubscribed){
+	
+%>
+	<a href="javascript:onSubscribeClick();" id="subscribe-link">Subscribe</a>
+<%}else{ %>
+	<a href="javascript:onUnsubscribeClick();" id="unsubscribe-link">Unsubscribe</a>
+<% }%>
 </div>
 
     

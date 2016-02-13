@@ -1,11 +1,18 @@
 function onSubscribeClick(){
-	var email = prompt("Please enter your email address.", "");
-	
-	if(validateEmail(email)){
-		console.log("Email is fine");
-	}else{
-		window.alert("Please enter a correct email.");
-	}
+	$.post("/subscribe",
+		    {},
+		    function(data, status){
+		        location.reload();
+		    });
+}
+
+function onUnsubscribeClick(){
+	console.log("clicked");
+	$.post("/unsubscribe",
+		    {},
+		    function(data, status){
+		    	location.reload();
+		    });
 }
 
 function validateEmail(email) {
