@@ -3,6 +3,6 @@
 <cron>
 <url>/cron/email</url>
 <description>Daily Digest Emails</description>
-<schedule>every 2 minutes</schedule>
+<schedule>every day 17:00</schedule>
 </cron>
 </cronentries>
