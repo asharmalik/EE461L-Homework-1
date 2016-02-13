@@ -34,7 +34,15 @@
 <html>
 
 <head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+   	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+   	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
  </head>
 
   <head>
@@ -44,8 +52,23 @@
  
 
   <body>
-
- 
+  
+  <div class="img-container">
+  	<img src="/img/header.jpg" alt="UT Tower" id="banner">
+  </div>
+  
+  <h1 id="blog-title">Blog Title</h1>
+  
+  
+  <div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    	
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
 
 <%
 
@@ -69,9 +92,7 @@
 
 %>
 
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
+<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" id="sign-in-link">Sign out</a>
 
 <%
 
@@ -79,11 +100,7 @@
 
 %>
 
-<p>Hello!
-
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-
-to include your name with greetings you post.</p>
+<p><a href="<%= userService.createLoginURL(request.getRequestURI()) %>" id="sign-in-link">Sign in</a></p>
 
 <%
 

@@ -1,0 +1,24 @@
+#banner{
+	width: 100%;
+}
+
+.img-container {
+    overflow: hidden; 
+}
+
+#sign-in-link{
+	position: fixed;
+	top: 5px;
+	right: 8px;
+	font-size: 115%;
+	color: white;
+	font-weight: bold;
+}
+
+#blog-title {
+	position: relative;
+	top: -75px;
+	left: 12px;
+	font-size: 300%;
+	color: white;
+}
