@@ -23,6 +23,7 @@
 <html>
 
 <head>
+ 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
    	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
    	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -32,24 +33,15 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+ 
+ 	<script src="homepage.js"></script>
  </head>
   
   <div class="img-container">
   	<img src="/img/header.jpg" alt="UT Tower" id="banner">
   </div>
   
-  <h1 id="blog-title">Blog Title</h1>
-  
-  
-  <div class="container">
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-    	
-    </div>
-    <div class="col-md-1"></div>
-  </div>
-</div>
+  <h1 id="blog-title">Best Blog</h1>
 
 <%
 	// See if we're viewing all blog posts or not
@@ -77,6 +69,28 @@
     }
 %>
 
+  <div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    
+    <%
+    	
+    if(user != null){
+    	
+    	%>
+    	<a href="/createpost.jsp">
+			<button type="button" class="btn btn-default">
+		  	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create new post
+			</button>
+		</a>
+    	<%
+    }
+    
+    %>
+    	
+	<br>
+	<br>
 <%
     ObjectifyService.register(BlogPost.class);
 	List<BlogPost> greetings = ObjectifyService.ofy().load().type(BlogPost.class).list();   
@@ -125,7 +139,6 @@
 
             %>
             <blockquote>${fn:escapeXml(greeting_content)}</blockquote>
-            <p>-------------------------</p>
 
             <%
             count++;
@@ -135,21 +148,25 @@
     }
 
 %>
-
-    <form action="/createpost.jsp" method="get">
-      <div><input type="submit" value="Create New Blog Post" /></div>
-    </form>
     
     <% if (!viewAll) { %>
-    <form action="/homepage.jsp" method="get">
-      <div><input type="submit" value="View All Posts" /></div>
-      <input type="hidden" name="viewAll" value="true"/>
-    </form>
-    <% } else { %>
-    <form action="/homepage.jsp" method="get">
-      <div><input type="submit" value="Go Home" /></div>
-    </form>
-    <%} %>
+    	<br>
+    	<br>
+    	<a href="homepage.jsp?viewAll=true">
+		<button type="button" class="btn btn-default"> View all posts </button>
+	</a>
 
+    <% }  %>
+    
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<div id="wrapper" style="text-align: center">    
+	<a href="javascript:onSubscribeClick();" id="subscribe-link">Subscribe</a> | <a href="" id="unsubscribe-link">Unsubscribe</a>
+</div>
+
+    
   </body>
 </html>

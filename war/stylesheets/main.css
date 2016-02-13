@@ -1,3 +1,7 @@
+body{
+	overflow-x: hidden;
+}
+
 #banner{
 	width: 100%;
 }
@@ -21,4 +25,13 @@
 	left: 12px;
 	font-size: 300%;
 	color: white;
+}
+
+.center {
+	position: fixed;
+	bottom: 0px;
+}
+
+textarea {
+	
 }
