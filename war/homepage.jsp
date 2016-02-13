@@ -64,13 +64,14 @@
 		
 	List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
 	
-	
-	for (Subscriber s : subscribers) {
-		if(s == null) continue;
-		
-		if (s.getUser().getEmail().equals(user.getEmail())) {
-			userSubscribed = true;
-			break;
+	if (user != null) {
+		for (Subscriber s : subscribers) {
+			if(s == null) continue;
+			
+			if (s.getUser().getEmail().equals(user.getEmail())) {
+				userSubscribed = true;
+				break;
+			}
 		}
 	}
     
@@ -186,13 +187,15 @@
 
 <div id="wrapper" style="text-align: center">
 <%
+if(user != null) {
 if(!userSubscribed){
 	
 %>
 	<a href="javascript:onSubscribeClick();" id="subscribe-link">Subscribe</a>
 <%}else{ %>
 	<a href="javascript:onUnsubscribeClick();" id="unsubscribe-link">Unsubscribe</a>
-<% }%>
+<% }
+}%>
 </div>
 
     
