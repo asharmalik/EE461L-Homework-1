@@ -21,8 +21,9 @@ import com.googlecode.objectify.ObjectifyService;
 
 public class EmailCronServlet extends HttpServlet {
 	static {
-        ObjectifyService.register(Subscriber.class);
-    }
+            ObjectifyService.register(Subscriber.class);
+            ObjectifyService.register(BlogPost.class);
+        }
 	
 	public final static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
 	
