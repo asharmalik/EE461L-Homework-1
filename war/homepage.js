@@ -2,6 +2,7 @@ function onSubscribeClick(){
 	$.post("/subscribe",
 		    {},
 		    function(data, status){
+		    	alert("Thank you for subscribing! Look out for daily emails from us.");
 		        location.reload();
 		    });
 }
@@ -11,6 +12,7 @@ function onUnsubscribeClick(){
 	$.post("/unsubscribe",
 		    {},
 		    function(data, status){
+		    	alert("Sorry to see you go. Re-subscribe any time!");
 		    	location.reload();
 		    });
 }
